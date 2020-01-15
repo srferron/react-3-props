@@ -13,8 +13,17 @@ function Hola () {
 //React Component child
 function HolaProps (props) {
   //No se puede cambiar props.name porque React impide cambiar las propiedades recibidas en una funcion
-  const nombreApellido = props.name + ' garcia';
-  return <h1>Hola {nombreApellido}</h1>
+  let nombreApellido;
+  if(props.name){
+    nombreApellido = props.name + ' garcia';
+  }else{
+    nombreApellido = 'noname';
+  }
+
+  //Funcionan los 3 returns
+  //return <h1>Hola {nombreApellido}</h1>
+  //return <h1>Hola {(props.name) ? props.name + ' garcia' : 'noname'}</h1>;
+  return <h3>Hola {props.name || 'noname'}</h3>
 }
 
 class App extends Component {
@@ -30,6 +39,7 @@ class App extends Component {
       <>
       <Hola/>
       <HolaProps name='pepita'/>
+      <HolaProps/>
       </>
     );
   }
